@@ -1,3 +1,0 @@
-#!/bin/bash
-
-java -jar $ANTLR3/antlr-3.4-complete.jar "$@"
