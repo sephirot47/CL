@@ -1,0 +1,1 @@
+(LIST_FUNCTIONS (func main PARAMS (LIST_INSTR (write "Testing") (FUNCALL printArray (ARGLIST 1 5)))) (func printArray (PARAMS array size) (LIST_INSTR (:= i 0) (write "Array: %n") (while (< i size) (LIST_INSTR (write array i) (write "%n") (:= i (+ i 1)))) (write "------%n"))))

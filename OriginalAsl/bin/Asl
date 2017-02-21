@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec java -enableassertions -jar /home/sephirot47/CL/Asl/bin/Asl.jar "$@"

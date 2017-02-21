@@ -1,0 +1,131 @@
+digraph {
+
+	ordering=out;
+	ranksep=.4;
+	bgcolor="lightgrey"; node [shape=box, fixedsize=false, fontsize=12, fontname="Helvetica-bold", fontcolor="blue"
+		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
+	edge [arrowsize=.5, color="black", style="bold"]
+
+  n0 [label="LIST_FUNCTIONS"];
+  n1 [label="func"];
+  n1 [label="func"];
+  n2 [label="main"];
+  n3 [label="PARAMS"];
+  n4 [label="LIST_INSTR"];
+  n4 [label="LIST_INSTR"];
+  n5 [label="write"];
+  n5 [label="write"];
+  n6 [label="\"Testing\""];
+  n7 [label="[]="];
+  n7 [label="[]="];
+  n8 [label="varArray"];
+  n9 [label="ARGLIST"];
+  n9 [label="ARGLIST"];
+  n10 [label="6"];
+  n11 [label="4"];
+  n12 [label="5"];
+  n13 [label="2"];
+  n14 [label="1"];
+  n15 [label="0"];
+  n16 [label="9"];
+  n17 [label="FUNCALL"];
+  n17 [label="FUNCALL"];
+  n18 [label="printArray"];
+  n19 [label="ARGLIST"];
+  n19 [label="ARGLIST"];
+  n20 [label="1"];
+  n21 [label="5"];
+  n22 [label="func"];
+  n22 [label="func"];
+  n23 [label="printArray"];
+  n24 [label="PARAMS"];
+  n24 [label="PARAMS"];
+  n25 [label="array"];
+  n26 [label="size"];
+  n27 [label="LIST_INSTR"];
+  n27 [label="LIST_INSTR"];
+  n28 [label=":="];
+  n28 [label=":="];
+  n29 [label="i"];
+  n30 [label="0"];
+  n31 [label="write"];
+  n31 [label="write"];
+  n32 [label="\"Array: %n\""];
+  n33 [label="while"];
+  n33 [label="while"];
+  n34 [label="<"];
+  n34 [label="<"];
+  n35 [label="i"];
+  n36 [label="size"];
+  n37 [label="LIST_INSTR"];
+  n37 [label="LIST_INSTR"];
+  n38 [label="write"];
+  n38 [label="write"];
+  n39 [label="array"];
+  n39 [label="array"];
+  n40 [label="i"];
+  n41 [label="write"];
+  n41 [label="write"];
+  n42 [label="\"%n\""];
+  n43 [label=":="];
+  n43 [label=":="];
+  n44 [label="i"];
+  n45 [label="+"];
+  n45 [label="+"];
+  n46 [label="i"];
+  n47 [label="1"];
+  n48 [label="write"];
+  n48 [label="write"];
+  n49 [label="\"------%n\""];
+
+  n0 -> n1 // "LIST_FUNCTIONS" -> "func"
+  n1 -> n2 // "func" -> "main"
+  n1 -> n3 // "func" -> "PARAMS"
+  n1 -> n4 // "func" -> "LIST_INSTR"
+  n4 -> n5 // "LIST_INSTR" -> "write"
+  n5 -> n6 // "write" -> "\"Testing\""
+  n4 -> n7 // "LIST_INSTR" -> "[]="
+  n7 -> n8 // "[]=" -> "varArray"
+  n7 -> n9 // "[]=" -> "ARGLIST"
+  n9 -> n10 // "ARGLIST" -> "6"
+  n9 -> n11 // "ARGLIST" -> "4"
+  n9 -> n12 // "ARGLIST" -> "5"
+  n9 -> n13 // "ARGLIST" -> "2"
+  n9 -> n14 // "ARGLIST" -> "1"
+  n9 -> n15 // "ARGLIST" -> "0"
+  n9 -> n16 // "ARGLIST" -> "9"
+  n4 -> n17 // "LIST_INSTR" -> "FUNCALL"
+  n17 -> n18 // "FUNCALL" -> "printArray"
+  n17 -> n19 // "FUNCALL" -> "ARGLIST"
+  n19 -> n20 // "ARGLIST" -> "1"
+  n19 -> n21 // "ARGLIST" -> "5"
+  n0 -> n22 // "LIST_FUNCTIONS" -> "func"
+  n22 -> n23 // "func" -> "printArray"
+  n22 -> n24 // "func" -> "PARAMS"
+  n24 -> n25 // "PARAMS" -> "array"
+  n24 -> n26 // "PARAMS" -> "size"
+  n22 -> n27 // "func" -> "LIST_INSTR"
+  n27 -> n28 // "LIST_INSTR" -> ":="
+  n28 -> n29 // ":=" -> "i"
+  n28 -> n30 // ":=" -> "0"
+  n27 -> n31 // "LIST_INSTR" -> "write"
+  n31 -> n32 // "write" -> "\"Array: %n\""
+  n27 -> n33 // "LIST_INSTR" -> "while"
+  n33 -> n34 // "while" -> "<"
+  n34 -> n35 // "<" -> "i"
+  n34 -> n36 // "<" -> "size"
+  n33 -> n37 // "while" -> "LIST_INSTR"
+  n37 -> n38 // "LIST_INSTR" -> "write"
+  n38 -> n39 // "write" -> "array"
+  n39 -> n40 // "array" -> "i"
+  n37 -> n41 // "LIST_INSTR" -> "write"
+  n41 -> n42 // "write" -> "\"%n\""
+  n37 -> n43 // "LIST_INSTR" -> ":="
+  n43 -> n44 // ":=" -> "i"
+  n43 -> n45 // ":=" -> "+"
+  n45 -> n46 // "+" -> "i"
+  n45 -> n47 // "+" -> "1"
+  n27 -> n48 // "LIST_INSTR" -> "write"
+  n48 -> n49 // "write" -> "\"------%n\""
+
+}
