@@ -1,5 +1,6 @@
 #!/bin/bash
 
+(cd /home/sephirot47/CL/Asl ; make)
 FILE=$1
 Asl ${FILE}.asl -dot -ast ${FILE}.ast.dot 
 if [ -z $2 ]

@@ -44,6 +44,7 @@ tokens {
     BOOLEAN;    // Boolean atom (for Boolean constants "true" or "false")
     PVALUE;     // Parameter by value in the list of parameters
     PREF;       // Parameter by reference in the list of parameters
+    ARR_ACCESS;
 }
 
 @header {
@@ -146,7 +147,7 @@ factor  :   (NOT^ | PLUS^ | MINUS^)? atom
 // array = [5,1,2,3,9,0] //6
 atom    :   ID 
         |   INT
-	|   (ID^ '['! expr ']'!)
+	|   (ID '[' expr ']') -> ^(ARR_ACCESS[$ID,"ARR_ACCESS"] ID expr) 
         |   (b=TRUE | b=FALSE)  -> ^(BOOLEAN[$b,$b.text])
         |   funcall
         |   '('! expr ')'!

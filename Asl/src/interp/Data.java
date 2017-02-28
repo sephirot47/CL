@@ -38,6 +38,7 @@ package interp;
  */
 
 import parser.*;
+import java.util.*;
 
 public class Data {
     /** Types of data */
@@ -48,13 +49,15 @@ public class Data {
 
     /** Value of the data */
     private int value;
-    private LinkedList<int> arrayValues;
+    private ArrayList<Integer> arrayValues;
 
     /** Constructor for integers */
     Data(int v) { type = Type.INTEGER; value = v; }
 
     /** Constructor for Booleans */
     Data(boolean b) { type = Type.BOOLEAN; value = b ? 1 : 0; }
+
+    Data(ArrayList<Integer> arr) { type = Type.ARRAY; value = -1; arrayValues = arr; }
 
     /** Constructor for void data */
     Data() {type = Type.VOID; }
@@ -94,6 +97,11 @@ public class Data {
         return value == 1;
     }
 
+    public Integer getArrayValue(int index) {
+        assert type == Type.ARRAY;
+        return arrayValues.get(index);
+    }
+
     /** Defines a Boolean value for the data */
     public void setValue(boolean b) { type = Type.BOOLEAN; value = b ? 1 : 0; }
 
@@ -101,7 +109,7 @@ public class Data {
     public void setValue(int v) { type = Type.INTEGER; value = v; }
     
     /** Defines an integer value for the data */
-    public void setValue(LinkedList<int> array)
+    public void setValue(ArrayList<Integer> array)
     { 
     	type = Type.ARRAY; 
     	value = -1;
