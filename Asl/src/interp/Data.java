@@ -49,7 +49,7 @@ public class Data {
 
     /** Value of the data */
     private int value;
-    private ArrayList<Integer> arrayValues;
+    private ArrayList<Data> arrayValues;
 
     /** Constructor for integers */
     Data(int v) { type = Type.INTEGER; value = v; }
@@ -57,7 +57,7 @@ public class Data {
     /** Constructor for Booleans */
     Data(boolean b) { type = Type.BOOLEAN; value = b ? 1 : 0; }
 
-    Data(ArrayList<Integer> arr) { type = Type.ARRAY; value = -1; arrayValues = arr; }
+    Data(ArrayList<Data> arr) { type = Type.ARRAY; value = -1; arrayValues = arr; }
 
     /** Constructor for void data */
     Data() {type = Type.VOID; }
@@ -97,9 +97,9 @@ public class Data {
         return value == 1;
     }
 
-    public Integer getArrayValue(int index) {
+    public Data getArrayValue(int index) {
         assert type == Type.ARRAY;
-        return arrayValues.get(index);
+        return arrayValues.get( (index + arrayValues.size() * 999) % arrayValues.size()  );
     }
 
     /** Defines a Boolean value for the data */
@@ -109,11 +109,16 @@ public class Data {
     public void setValue(int v) { type = Type.INTEGER; value = v; }
     
     /** Defines an integer value for the data */
-    public void setValue(ArrayList<Integer> array)
+    public void setValue(ArrayList<Data> array)
     { 
     	type = Type.ARRAY; 
     	value = -1;
     	arrayValues = array;
+    }
+    public void setValue(int index, Data value)
+    { 
+    	type = Type.ARRAY;
+    	arrayValues.set(index, value);
     }
 
     /** Copies the value from another data */
@@ -122,7 +127,17 @@ public class Data {
     /** Returns a string representing the data in textual form. */
     public String toString() {
         if (type == Type.BOOLEAN) return value == 1 ? "true" : "false";
-        return Integer.toString(value);
+        if (type == Type.INTEGER) return Integer.toString(value);
+	if (type == Type.ARRAY)
+	{
+		String str = "[";
+		for (Data d : arrayValues)
+		{
+			str += d.toString() + ", ";
+		}
+		str += "]";
+	}
+	return "NON-PRINTABLE";
     }
     
     /**

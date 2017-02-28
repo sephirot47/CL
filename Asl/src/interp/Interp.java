@@ -235,25 +235,18 @@ public class Interp {
         // A big switch for all type of instructions
         switch (t.getType()) {
 
+            case AslLexer.ARR_ELM_ASSIGN:
+		value = evaluateExpression(t.getChild(1));
+		AslTree arrAccess = t.getChild(0);
+	        Data array = Stack.getVariable( arrAccess.getChild(0).getText() );
+		Integer index = evaluateExpression( arrAccess.getChild(1) ).getIntegerValue();
+		array.setValue(index, value);
+		return null;
+
             // Assignment
             case AslLexer.ASSIGN:
-                if (t.getText().equals(":="))
-                {
-                    value = evaluateExpression(t.getChild(1));
-                }
-                else if (t.getText().equals("[]="))
-                {
-                	ArrayList<Integer> arrayOfValues = new ArrayList<Integer>();
-                    AslTree arrValues = t.getChild(1);
-                    for (int i = 0; i < arrValues.getChildCount(); ++i)
-                    {
-                        int v = evaluateExpression(arrValues.getChild(i)).getIntegerValue();
-                        arrayOfValues.add(v);
-                    }
-                    value.setValue(arrayOfValues);
-                }
+		value = evaluateExpression(t.getChild(1));
                 Stack.defineVariable (t.getChild(0).getText(), value);
-
                 return null;
 
             // If-then-else
@@ -361,6 +354,18 @@ public class Interp {
             case AslLexer.BOOLEAN:
                 value = new Data(t.getBooleanValue());
                 break;
+            case AslLexer.LIST:
+		{
+			AslTree arrValues = t;
+		    	ArrayList<Data> arrayOfValues = new ArrayList<Data>();
+		   	 for (int i = 0; i < arrValues.getChildCount(); ++i)
+		    	{
+		        	Data v = evaluateExpression(arrValues.getChild(i));
+		        	arrayOfValues.add(v);
+		    	}
+		    	value = new Data(arrayOfValues);
+		}
+                break;
             // A function call. Checks that the function returns a result.
             case AslLexer.FUNCALL:
                 value = executeFunction(t.getChild(0).getText(), t.getChild(1));
@@ -371,6 +376,7 @@ public class Interp {
                 break;
             default: break;
         }
+
 
         // Retrieve the original line and return
         if (value != null) {

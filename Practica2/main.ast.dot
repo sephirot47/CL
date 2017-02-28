@@ -16,56 +16,62 @@ digraph {
   n5 [label="write"];
   n5 [label="write"];
   n6 [label="\"Testing\""];
-  n7 [label="[]="];
-  n7 [label="[]="];
+  n7 [label="ASSIGN"];
+  n7 [label="ASSIGN"];
   n8 [label="varArray"];
-  n9 [label="ARGLIST"];
-  n9 [label="ARGLIST"];
-  n10 [label="6"];
+  n9 [label="LIST"];
+  n9 [label="LIST"];
+  n10 [label="true"];
   n11 [label="4"];
   n12 [label="5"];
-  n13 [label="2"];
-  n14 [label="1"];
-  n15 [label="0"];
-  n16 [label="9"];
-  n17 [label=":="];
-  n17 [label=":="];
-  n18 [label="i"];
-  n19 [label="0"];
-  n20 [label=":="];
-  n20 [label=":="];
-  n21 [label="size"];
-  n22 [label="7"];
-  n23 [label="write"];
-  n23 [label="write"];
-  n24 [label="\"Array: %n\""];
-  n25 [label="while"];
-  n25 [label="while"];
-  n26 [label="<"];
-  n26 [label="<"];
-  n27 [label="i"];
-  n28 [label="size"];
-  n29 [label="LIST_INSTR"];
-  n29 [label="LIST_INSTR"];
-  n30 [label="write"];
-  n30 [label="write"];
-  n31 [label="ARR_ACCESS"];
-  n31 [label="ARR_ACCESS"];
-  n32 [label="varArray"];
-  n33 [label="i"];
+  n13 [label="false"];
+  n14 [label="LIST"];
+  n14 [label="LIST"];
+  n15 [label="5"];
+  n16 [label="2"];
+  n17 [label="3"];
+  n18 [label="true"];
+  n19 [label="3"];
+  n20 [label="ASSIGN"];
+  n20 [label="ASSIGN"];
+  n21 [label="i"];
+  n22 [label="-"];
+  n22 [label="-"];
+  n23 [label="1"];
+  n24 [label="ASSIGN"];
+  n24 [label="ASSIGN"];
+  n25 [label="size"];
+  n26 [label="7"];
+  n27 [label="write"];
+  n27 [label="write"];
+  n28 [label="\"Array: %n\""];
+  n29 [label="while"];
+  n29 [label="while"];
+  n30 [label="<"];
+  n30 [label="<"];
+  n31 [label="i"];
+  n32 [label="size"];
+  n33 [label="LIST_INSTR"];
+  n33 [label="LIST_INSTR"];
   n34 [label="write"];
   n34 [label="write"];
-  n35 [label="\"%n\""];
-  n36 [label=":="];
-  n36 [label=":="];
+  n35 [label="ARR_ACCESS"];
+  n35 [label="ARR_ACCESS"];
+  n36 [label="varArray"];
   n37 [label="i"];
-  n38 [label="+"];
-  n38 [label="+"];
-  n39 [label="i"];
-  n40 [label="1"];
-  n41 [label="write"];
-  n41 [label="write"];
-  n42 [label="\"------%n\""];
+  n38 [label="write"];
+  n38 [label="write"];
+  n39 [label="\"%n\""];
+  n40 [label="ASSIGN"];
+  n40 [label="ASSIGN"];
+  n41 [label="i"];
+  n42 [label="+"];
+  n42 [label="+"];
+  n43 [label="i"];
+  n44 [label="1"];
+  n45 [label="write"];
+  n45 [label="write"];
+  n46 [label="\"------%n\""];
 
   n0 -> n1 // "LIST_FUNCTIONS" -> "func"
   n1 -> n2 // "func" -> "main"
@@ -73,41 +79,45 @@ digraph {
   n1 -> n4 // "func" -> "LIST_INSTR"
   n4 -> n5 // "LIST_INSTR" -> "write"
   n5 -> n6 // "write" -> "\"Testing\""
-  n4 -> n7 // "LIST_INSTR" -> "[]="
-  n7 -> n8 // "[]=" -> "varArray"
-  n7 -> n9 // "[]=" -> "ARGLIST"
-  n9 -> n10 // "ARGLIST" -> "6"
-  n9 -> n11 // "ARGLIST" -> "4"
-  n9 -> n12 // "ARGLIST" -> "5"
-  n9 -> n13 // "ARGLIST" -> "2"
-  n9 -> n14 // "ARGLIST" -> "1"
-  n9 -> n15 // "ARGLIST" -> "0"
-  n9 -> n16 // "ARGLIST" -> "9"
-  n4 -> n17 // "LIST_INSTR" -> ":="
-  n17 -> n18 // ":=" -> "i"
-  n17 -> n19 // ":=" -> "0"
-  n4 -> n20 // "LIST_INSTR" -> ":="
-  n20 -> n21 // ":=" -> "size"
-  n20 -> n22 // ":=" -> "7"
-  n4 -> n23 // "LIST_INSTR" -> "write"
-  n23 -> n24 // "write" -> "\"Array: %n\""
-  n4 -> n25 // "LIST_INSTR" -> "while"
-  n25 -> n26 // "while" -> "<"
-  n26 -> n27 // "<" -> "i"
-  n26 -> n28 // "<" -> "size"
-  n25 -> n29 // "while" -> "LIST_INSTR"
-  n29 -> n30 // "LIST_INSTR" -> "write"
-  n30 -> n31 // "write" -> "ARR_ACCESS"
-  n31 -> n32 // "ARR_ACCESS" -> "varArray"
-  n31 -> n33 // "ARR_ACCESS" -> "i"
-  n29 -> n34 // "LIST_INSTR" -> "write"
-  n34 -> n35 // "write" -> "\"%n\""
-  n29 -> n36 // "LIST_INSTR" -> ":="
-  n36 -> n37 // ":=" -> "i"
-  n36 -> n38 // ":=" -> "+"
-  n38 -> n39 // "+" -> "i"
-  n38 -> n40 // "+" -> "1"
-  n4 -> n41 // "LIST_INSTR" -> "write"
-  n41 -> n42 // "write" -> "\"------%n\""
+  n4 -> n7 // "LIST_INSTR" -> "ASSIGN"
+  n7 -> n8 // "ASSIGN" -> "varArray"
+  n7 -> n9 // "ASSIGN" -> "LIST"
+  n9 -> n10 // "LIST" -> "true"
+  n9 -> n11 // "LIST" -> "4"
+  n9 -> n12 // "LIST" -> "5"
+  n9 -> n13 // "LIST" -> "false"
+  n9 -> n14 // "LIST" -> "LIST"
+  n14 -> n15 // "LIST" -> "5"
+  n14 -> n16 // "LIST" -> "2"
+  n14 -> n17 // "LIST" -> "3"
+  n9 -> n18 // "LIST" -> "true"
+  n9 -> n19 // "LIST" -> "3"
+  n4 -> n20 // "LIST_INSTR" -> "ASSIGN"
+  n20 -> n21 // "ASSIGN" -> "i"
+  n20 -> n22 // "ASSIGN" -> "-"
+  n22 -> n23 // "-" -> "1"
+  n4 -> n24 // "LIST_INSTR" -> "ASSIGN"
+  n24 -> n25 // "ASSIGN" -> "size"
+  n24 -> n26 // "ASSIGN" -> "7"
+  n4 -> n27 // "LIST_INSTR" -> "write"
+  n27 -> n28 // "write" -> "\"Array: %n\""
+  n4 -> n29 // "LIST_INSTR" -> "while"
+  n29 -> n30 // "while" -> "<"
+  n30 -> n31 // "<" -> "i"
+  n30 -> n32 // "<" -> "size"
+  n29 -> n33 // "while" -> "LIST_INSTR"
+  n33 -> n34 // "LIST_INSTR" -> "write"
+  n34 -> n35 // "write" -> "ARR_ACCESS"
+  n35 -> n36 // "ARR_ACCESS" -> "varArray"
+  n35 -> n37 // "ARR_ACCESS" -> "i"
+  n33 -> n38 // "LIST_INSTR" -> "write"
+  n38 -> n39 // "write" -> "\"%n\""
+  n33 -> n40 // "LIST_INSTR" -> "ASSIGN"
+  n40 -> n41 // "ASSIGN" -> "i"
+  n40 -> n42 // "ASSIGN" -> "+"
+  n42 -> n43 // "+" -> "i"
+  n42 -> n44 // "+" -> "1"
+  n4 -> n45 // "LIST_INSTR" -> "write"
+  n45 -> n46 // "write" -> "\"------%n\""
 
 }

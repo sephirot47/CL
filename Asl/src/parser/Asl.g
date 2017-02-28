@@ -45,6 +45,8 @@ tokens {
     PVALUE;     // Parameter by value in the list of parameters
     PREF;       // Parameter by reference in the list of parameters
     ARR_ACCESS;
+    ARR_ELM_ASSIGN; // One element assign
+    LIST;
 }
 
 @header {
@@ -98,8 +100,9 @@ instruction
         ;
 
 // Assignment
-assign	:	ID eq=EQUAL expr -> ^(ASSIGN[$eq,":="] ID expr)
-	|	ID eq=EQUAL '[' expr_list ']' -> ^(ASSIGN[$eq,"[]="] ID ^(ARGLIST expr_list) )
+assign	:	ID eq=EQUAL expr -> ^(ASSIGN[$eq,"ASSIGN"] ID expr)
+	//|	ID eq=EQUAL list -> ^(ARR_ASSIGN[$eq,"ARR_ASSIGN"] ID list )
+	|	ID '[' index=expr ']' eq=EQUAL val=expr -> ^(ARR_ELM_ASSIGN ^(ARR_ACCESS ID $index) $val )
         ;
 
 // if-then-else (else is optional)
@@ -151,6 +154,7 @@ atom    :   ID
         |   (b=TRUE | b=FALSE)  -> ^(BOOLEAN[$b,$b.text])
         |   funcall
         |   '('! expr ')'!
+	|   '[' expr_list ']' -> ^(LIST expr_list)
         ;
 
 // A function call has a lits of arguments in parenthesis (possibly empty)
