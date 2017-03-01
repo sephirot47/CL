@@ -57,7 +57,7 @@ public class Data {
     /** Constructor for Booleans */
     Data(boolean b) { type = Type.BOOLEAN; value = b ? 1 : 0; }
 
-    Data(ArrayList<Data> arr) { type = Type.ARRAY; value = -1; arrayValues = arr; System.out.println("hehe"); System.out.println(arrayValues); }
+    Data(ArrayList<Data> arr) { type = Type.ARRAY; value = -1; arrayValues = arr; }
 
     /** Constructor for void data */
     Data() {type = Type.VOID; }
