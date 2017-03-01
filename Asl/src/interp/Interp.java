@@ -236,16 +236,17 @@ public class Interp {
         switch (t.getType()) {
 
             case AslLexer.ARR_ELM_ASSIGN:
-		value = evaluateExpression(t.getChild(1));
-		AslTree arrAccess = t.getChild(0);
-	        Data array = Stack.getVariable( arrAccess.getChild(0).getText() );
-		Integer index = evaluateExpression( arrAccess.getChild(1) ).getIntegerValue();
-		array.setValue(index, value);
-		return null;
+                value = evaluateExpression(t.getChild(1));
+                AslTree arrAccess = t.getChild(0);
+                Data array = Stack.getVariable( arrAccess.getChild(0).getText() );
+
+                Integer index = evaluateExpression( arrAccess.getChild(1) ).getIntegerValue();
+                array.setValue(index, value);
+                return null;
 
             // Assignment
             case AslLexer.ASSIGN:
-		value = evaluateExpression(t.getChild(1));
+                value = evaluateExpression(t.getChild(1));
                 Stack.defineVariable (t.getChild(0).getText(), value);
                 return null;
 
@@ -331,17 +332,15 @@ public class Interp {
         Data value = null;
         // Atoms
         switch (type) {
-       	    case AslLexer.ARR_ACCESS:
-		{
-			Data array = Stack.getVariable(t.getChild(0).getText());
-			Data index = evaluateExpression( t.getChild(1) );
-			if (!index.isInteger()) {
-				throw new RuntimeException ("index not an integer");
-			}
-        		value = new Data( array.getArrayValue( index.getIntegerValue() ) );
-		}
-        	break;
-        		
+            case AslLexer.ARR_ACCESS:
+                Data array = Stack.getVariable(t.getChild(0).getText());
+                Data index = evaluateExpression( t.getChild(1) );
+                if (!index.isInteger()) {
+                    throw new RuntimeException ("index not an integer");
+                }
+                value = new Data( array.getArrayValue( index.getIntegerValue() ) );
+                break;
+                
             // A variable
             case AslLexer.ID:
                 value = new Data(Stack.getVariable(t.getText()));
@@ -355,16 +354,14 @@ public class Interp {
                 value = new Data(t.getBooleanValue());
                 break;
             case AslLexer.LIST:
-		{
-			AslTree arrValues = t;
-		    	ArrayList<Data> arrayOfValues = new ArrayList<Data>();
-		   	 for (int i = 0; i < arrValues.getChildCount(); ++i)
-		    	{
-		        	Data v = evaluateExpression(arrValues.getChild(i));
-		        	arrayOfValues.add(v);
-		    	}
-		    	value = new Data(arrayOfValues);
-		}
+                AslTree arrValues = t;
+                ArrayList<Data> arrayOfValues = new ArrayList<Data>();
+                for (int i = 0; i < arrValues.getChildCount(); ++i)
+                {
+                    Data v = evaluateExpression(arrValues.getChild(i));
+                    arrayOfValues.add(v);
+                }
+                value = new Data(arrayOfValues);
                 break;
             // A function call. Checks that the function returns a result.
             case AslLexer.FUNCALL:

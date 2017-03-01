@@ -57,13 +57,13 @@ public class Data {
     /** Constructor for Booleans */
     Data(boolean b) { type = Type.BOOLEAN; value = b ? 1 : 0; }
 
-    Data(ArrayList<Data> arr) { type = Type.ARRAY; value = -1; arrayValues = arr; }
+    Data(ArrayList<Data> arr) { type = Type.ARRAY; value = -1; arrayValues = arr; System.out.println("hehe"); System.out.println(arrayValues); }
 
     /** Constructor for void data */
     Data() {type = Type.VOID; }
 
     /** Copy constructor */
-    Data(Data d) { type = d.type; value = d.value; }
+    Data(Data d) { type = d.type; value = d.value; arrayValues = d.arrayValues; }
 
     /** Returns the type of data */
     public Type getType() { return type; }
@@ -111,14 +111,14 @@ public class Data {
     /** Defines an integer value for the data */
     public void setValue(ArrayList<Data> array)
     { 
-    	type = Type.ARRAY; 
-    	value = -1;
-    	arrayValues = array;
+        type = Type.ARRAY; 
+        value = -1;
+        arrayValues = array;
     }
     public void setValue(int index, Data value)
     { 
-    	type = Type.ARRAY;
-    	arrayValues.set(index, value);
+        type = Type.ARRAY;
+        arrayValues.set(index, value);
     }
 
     /** Copies the value from another data */
@@ -128,16 +128,21 @@ public class Data {
     public String toString() {
         if (type == Type.BOOLEAN) return value == 1 ? "true" : "false";
         if (type == Type.INTEGER) return Integer.toString(value);
-	if (type == Type.ARRAY)
-	{
-		String str = "[";
-		for (Data d : arrayValues)
-		{
-			str += d.toString() + ", ";
-		}
-		str += "]";
-	}
-	return "NON-PRINTABLE";
+        if (type == Type.ARRAY)
+        {
+            int s = arrayValues.size();
+            if (s == 0) return "[]";
+            
+            String str = "[";
+            for (int i = 0; i < s-1; ++i)
+            {
+                str += arrayValues.get(i).toString() + ", ";
+            }
+            str += arrayValues.get(s-1) + "]";
+            return str;
+        }
+
+        return "<" + type.toString() + ">";
     }
     
     /**
