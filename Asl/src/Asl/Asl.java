@@ -28,17 +28,24 @@
 package Asl;
 
 // Imports for ANTLR
-import org.antlr.runtime.*;
-import org.antlr.runtime.tree.*;
-import org.antlr.stringtemplate.*;
+import interp.AslTree;
+import interp.AslTreeAdaptor;
+import interp.Interp;
+import org.antlr.runtime.ANTLRFileStream;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.tree.DOTTreeGenerator;
+import org.apache.commons.cli.*;
+import parser.AslLexer;
+import parser.AslParser;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 // Imports from Java
-import org.apache.commons.cli.*; // Command Language Interface
-import java.io.*;
-
 // Parser and Interpreter
-import parser.*;
-import interp.*;
 
 /**
  * The class <code>Asl</code> implement the main function of the
@@ -63,8 +70,11 @@ public class Asl{
     /** Main program that invokes the parser and the interpreter. */
     
     public static void main(String[] args) throws Exception {
+
         // Parser for command line options
-        if (!readOptions (args)) System.exit(1);
+        if (!readOptions (args)) {
+            System.exit(1);
+        }
 
         // Parsing of the input file
         
